@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags for Google Indexing -->
+  <title>Ali Sakour | AI & Deep Learning Researcher</title>
+  <meta name="description" content="Ali Sakour is an AI researcher focusing on Model Compression, Sub-4-bit Quantization, Neural Cellular Automata, and NLP. Department of Computer & Automatic Control Engineering, Latakia University.">
+  <meta name="keywords" content="Ali Sakour, AI Researcher, Deep Learning, Model Quantization, S-DPQ, Neural Cellular Automata, Latakia University, Tishreen University, NLP">
+  <meta name="author" content="Ali Sakour">
+
+  <!-- OpenGraph Meta Tags for Social Media Sharing -->
+  <meta property="og:title" content="Ali Sakour | AI Researcher">
+  <meta property="og:description" content="Personal academic website of Ali Sakour. Research on efficient deep learning, PTQ, and generative morphogenetic systems.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alisakour.github.io/">
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-color: #fafbfc;
+      --card-bg: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #4b5563;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --border-color: #e5e7eb;
+      --code-bg: #f3f4f6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.65;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Header Profile Section */
+    .profile-section {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 32px;
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    @media (min-width: 680px) {
+      .profile-section {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .profile-text {
+      flex: 1;
+    }
+
+    .profile-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: #111827;
+      letter-spacing: -0.025em;
+      margin-bottom: 6px;
+    }
+
+    .profile-subtitle {
+      font-size: 1.15rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .profile-institution {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .profile-photo-wrapper {
+      flex-shrink: 0;
+      text-align: center;
+    }
+
+    .profile-photo {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      background-color: #e2e8f0;
+    }
+
+    /* Links & Buttons */
+    .links-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-main);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-link:hover {
+      background-color: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 48px;
+    }
+
+    h2.section-heading {
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bio-text {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+
+    /* Tags / Research Pills */
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      background-color: #eff6ff;
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border: 1px solid #dbeafe;
+    }
+
+    /* Publication Cards */
+    .pub-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 20px;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .pub-card:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .pub-title {
+      font-size: 1.12rem;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .pub-authors {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .pub-authors strong {
+      color: var(--text-main);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    .pub-venue {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #059669; /* Emerald accent */
+      margin-bottom: 12px;
+    }
+
+    .pub-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .pub-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .action-btn {
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      background-color: var(--bg-color);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.15s;
+    }
+
+    .action-btn:hover {
+      background-color: #e5e7eb;
+    }
+
+    /* BibTeX Accordion */
+    details.bibtex-details {
+      margin-top: 12px;
+    }
+
+    details summary {
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent);
+      user-select: none;
+      list-style: none;
+    }
+
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    pre.bibtex-code {
+      margin-top: 8px;
+      padding: 14px;
+      background-color: var(--code-bg);
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      overflow-x: auto;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding-top: 24px;
+      margin-top: 60px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header / About Section -->
+    <header class="profile-section">
+      <div class="profile-text">
+        <h1 class="profile-title">Ali Sakour</h1>
+        <div class="profile-subtitle">AI & Deep Learning Researcher</div>
+        <div class="profile-institution">
+          <i class="fa-solid fa-graduation-cap"></i> Dept. of Computer and Automatic Control Engineering<br>
+          Faculty of Mechanical & Electrical Engineering · <strong>Latakia University (Tishreen)</strong>
+        </div>
+
+        <p class="bio-text">
+          I am an AI researcher focused on deep learning model efficiency, neural morphogenesis, and representation learning. My research centers around developing extreme ultra-low-bit model quantization (such as sub-4-bit and data-free ternary PTQ) preserving weight geometry, uncovering emergent computational structures via Neural Cellular Automata (c-NCAs), and improving distributional semantics with attentive pooling.
+        </p>
+
+        <!-- Social & Academic Badges -->
+        <div class="links-bar">
+          <a href="mailto:your_email@example.com" class="btn-link"><i class="fa-solid fa-envelope"></i> Email</a>
+          <a href="https://github.com/alisakour" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a href="https://arxiv.org/search/cs?searchtype=author&query=Sakour,+A" target="_blank" class="btn-link"><i class="fa-solid fa-book-open"></i> arXiv</a>
+          <a href="https://openreview.net/profile?id=~Ali_Sakour1" target="_blank" class="btn-link"><i class="fa-solid fa-feather-pointed"></i> OpenReview</a>
+          <a href="https://orcid.org" target="_blank" class="btn-link"><i class="fa-brands fa-orcid"></i> ORCID</a>
+        </div>
+      </div>
+
+      <!-- Profile Avatar -->
+      <div class="profile-photo-wrapper">
+        <!-- ضع صورتك الشخصية في نفس المجلد وسمها avatar.jpg -->
+        <img src="avatar.jpg" alt="Ali Sakour" class="profile-photo" onerror="this.src='https://ui-avatars.com/api/?name=Ali+Sakour&size=200&background=2563eb&color=fff&bold=true'">
+      </div>
+    </header>
+
+    <!-- Research Interests -->
+    <section>
+      <h2 class="section-heading"><i class="fa-solid fa-compass text-blue-500"></i> Research Interests</h2>
+      <div class="tags-container">
+        <span class="tag"><i class="fa-solid fa-microchip"></i> Model Quantization & PTQ</span>
+        <span class="tag"><i class="fa-solid fa-compress"></i> Data-Free Ternary Weights</span>
+        <span class="tag"><i class="fa-solid fa-dna"></i> Neural Cellular Automata (NCAs)</span>
+        <span class="tag"><i class="fa-solid fa-shapes"></i> Morphogenesis & Self-Organization</span>
+        <span class="tag"><i class="fa-solid fa-brain"></i> Representation Alignment</span>
+        <span class="tag"><i class="fa-solid fa-language"></i> Distributional Semantics & NLP</span>
+      </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section>
+      <h2 class="section-heading"><i class="fa-solid fa-scroll"></i> Publications & Preprints</h2>
+
+      <!-- Paper 1: S-DPQ -->
+      <article class="pub-card">
+        <h3 class="pub-title">S-DPQ: Block-Level Angular and Norm Matching for Data-Free Ternary Quantization</h3>
+        <div class="pub-authors">
+          <strong>Ali Sakour</strong>
+        </div>
+        <div class="pub-venue">
+          <i class="fa-solid fa-award"></i> NeurIPS 2026 Workshop on Foundations of Efficient Deep Learning (AXIOM)
+        </div>
+        <p class="pub-desc">
+          Introduced Spatial-Directional Preserving Quantization (S-DPQ), a data-free ternary quantization scheme that aligns weight block geometry through joint cosine similarity and Frobenius norm matching, reinforced with salient channel protection for transformer models.
+        </p>
+        <div class="pub-actions">
+          <a href="https://openreview.net/forum?id=uN6c41dYw4" target="_blank" class="action-btn"><i class="fa-solid fa-file-pdf"></i> OpenReview</a>
+          <a href="https://github.com/alisakour/S-DPQ" target="_blank" class="action-btn"><i class="fa-brands fa-github"></i> Code</a>
+        </div>
+        <details class="bibtex-details">
+          <summary><i class="fa-solid fa-quote-left"></i> BibTeX</summary>
+          <pre class="bibtex-code">@inproceedings{sakour2026sdpq,
+  title={S-DPQ: Block-Level Angular and Norm Matching for Data-Free Ternary Quantization},
+  author={Sakour, Ali},
+  booktitle={NeurIPS Workshop on Foundations of Efficient Deep Learning (AXIOM)},
+  year={2026}
+}</pre>
+        </details>
+      </article>
+
+      <!-- Paper 2: Conditional Morphogenesis (NCA) -->
+      <article class="pub-card">
+        <h3 class="pub-title">Conditional Morphogenesis: Emergent Generation of Structural Digits via Neural Cellular Automata</h3>
+        <div class="pub-authors">
+          <strong>Ali Sakour</strong>
+        </div>
+        <div class="pub-venue">
+          <i class="fa-regular fa-newspaper"></i> arXiv preprint (arXiv:2512.08360 [cs.NE, cs.AI, cs.CV])
+        </div>
+        <p class="pub-desc">
+          Proposed a conditional Neural Cellular Automata (c-NCA) framework demonstrating structural digit formation from a single localized seed, bridging biologically inspired self-organization with discrete structural generative modeling.
+        </p>
+        <div class="pub-actions">
+          <a href="https://arxiv.org/abs/2512.08360" target="_blank" class="action-btn"><i class="fa-solid fa-file-pdf"></i> arXiv</a>
+          <a href="https://github.com/alisakour/Conditional-NCA-Digits" target="_blank" class="action-btn"><i class="fa-brands fa-github"></i> Code</a>
+        </div>
+        <details class="bibtex-details">
+          <summary><i class="fa-solid fa-quote-left"></i> BibTeX</summary>
+          <pre class="bibtex-code">@article{sakour2025conditional,
+  title={Conditional Morphogenesis: Emergent Generation of Structural Digits via Neural Cellular Automata},
+  author={Sakour, Ali},
+  journal={arXiv preprint arXiv:2512.08360},
+  year={2025}
+}</pre>
+        </details>
+      </article>
+
+      <!-- Paper 3: HAL Attention Pooling -->
+      <article class="pub-card">
+        <h3 class="pub-title">Enhancing Hyperspace Analogue to Language (HAL) Representations via Attention-Based Pooling for Text Classification</h3>
+        <div class="pub-authors">
+          <strong>Ali Sakour</strong>, Zoalfekar Sakour
+        </div>
+        <div class="pub-venue">
+          <i class="fa-regular fa-newspaper"></i> arXiv preprint (arXiv:2603.20149 [cs.CL, cs.AI])
+        </div>
+        <p class="pub-desc">
+          Augmented high-dimensional HAL co-occurrence representations using Truncated SVD and a learnable temperature-scaled additive attention pooling mechanism, yielding marked improvements in sentiment classification and interpretability over standard mean pooling.
+        </p>
+        <div class="pub-actions">
+          <a href="https://arxiv.org/abs/2603.20149" target="_blank" class="action-btn"><i class="fa-solid fa-file-pdf"></i> arXiv</a>
+          <a href="https://github.com/alisakour/HAL-Attention-Pooling" target="_blank" class="action-btn"><i class="fa-brands fa-github"></i> Code</a>
+        </div>
+        <details class="bibtex-details">
+          <summary><i class="fa-solid fa-quote-left"></i> BibTeX</summary>
+          <pre class="bibtex-code">@article{sakour2026enhancing,
+  title={Enhancing Hyperspace Analogue to Language (HAL) Representations via Attention-Based Pooling for Text Classification},
+  author={Sakour, Ali and Sakour, Zoalfekar},
+  journal={arXiv preprint arXiv:2603.20149},
+  year={2026}
+}</pre>
+        </details>
+      </article>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2026 Ali Sakour. Hosted on GitHub Pages.</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
