@@ -163,31 +163,27 @@
       margin-bottom: 20px;
     }
 
-    /* غلاف الصورة الشخصية مع تأثير عمق احترافي */
 .profile-photo-wrapper {
   flex-shrink: 0;
   text-align: center;
   position: relative;
 }
 
-/* صورة الباحث بنمط بورتيريه أكاديمي عصري */
 .profile-photo {
-  width: 215px;                  /* حجم أكبر وواضح جداً */
+  width: 215px;                
   height: 215px;
-  border-radius: 28px;           /* نمط Squircle العصري بدلاً من الدائرة التقليدية */
+  border-radius: 28px;          
   object-fit: cover;
-  object-position: center top;   /* لضمان تركيز الكاميرا على الوجه */
+  object-position: center top;   
   padding: 4px;
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  /* ظل احترافي ناعم متعدد الطبقات (Soft Studio Shadow) */
   box-shadow: 
     0 10px 25px -5px rgba(15, 23, 42, 0.08),
     0 8px 10px -6px rgba(15, 23, 42, 0.04);
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
 }
 
-/* حركة رفع خفيفة وراقية عند تمرير الماوس */
 .profile-photo:hover {
   transform: translateY(-4px);
   box-shadow: 
@@ -420,7 +416,7 @@
           <a href="https://github.com/alisakour" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> GitHub</a>
           <a href="https://arxiv.org/search/cs?searchtype=author&query=Sakour,+A" target="_blank" class="btn-link"><i class="fa-solid fa-book-open"></i> arXiv</a>
           <a href="https://openreview.net/profile?id=~Ali_Sakour1" target="_blank" class="btn-link"><i class="fa-solid fa-feather-pointed"></i> OpenReview</a>
-          <a href="https://orcid.org" target="_blank" class="btn-link"><i class="fa-brands fa-orcid"></i> ORCID</a>
+          <a href="https://orcid.org/0009-0000-1627-1356" target="_blank" class="btn-link"><i class="fa-brands fa-orcid"></i> ORCID</a>
         </div>
       </div>
 
@@ -554,7 +550,6 @@
       }, i * 180);
     });
 
-    // 2. تكميم الأوزان: انهيار الأوزان المستمرة إلى Ternary فائق السرعة
     const quantVector = document.getElementById('quant-vector');
 
     setTimeout(() => {
