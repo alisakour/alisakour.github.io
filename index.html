@@ -63,22 +63,21 @@
       padding-bottom: 32px;
       border-bottom: 1px solid var(--border-color);
     }
-/* شريط النواة الأكاديمي */
+/* شريط النواة البحثية بتصميم أكاديمي راقٍ */
 .academic-kernel {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 12px;
-  background-color: #f8fafc;
+  background: #f8fafc;
   border: 1px solid #e2e8f0;
-  border-left: 3px solid var(--accent); /* خط جانبي أزرق يوحي بالأكاديميا */
-  padding: 6px 12px;
-  border-radius: 6px;
+  border-left: 3px solid var(--accent);
+  padding: 8px 14px;
+  border-radius: 8px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.8rem;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   color: #334155;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
 
 .kernel-item {
@@ -95,43 +94,41 @@
 
 .kernel-divider {
   color: #cbd5e1;
+  font-weight: 300;
 }
 
-/* نمط التوكنات للغة */
+/* توكنات اللغة الحديثة */
 .token-chip {
   background: #ffffff;
   border: 1px solid #cbd5e1;
-  padding: 1px 5px;
-  border-radius: 3px;
-  color: #0f172a;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #1e293b;
+  font-size: 0.75rem;
+  font-weight: 500;
   display: inline-block;
   opacity: 0;
-  transform: translateY(3px);
-  animation: tokenIn 0.3s forwards ease;
+  transform: translateY(2px);
+  animation: tokenFadeIn 0.25s forwards cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes tokenIn {
+@keyframes tokenFadeIn {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* نمط المتجه المكمم */
+/* متجه التكميم */
 .vector-box {
-  color: #0284c7;
+  color: #2563eb;
   font-weight: 500;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 }
 
 .vector-box.quantized {
-  color: #059669; /* يتحول للأخضر المكمم */
+  color: #059669; /* أخضر زمردي يدل على اكتمال التكميم */
   font-weight: 600;
-}
-
-.math-target {
-  color: #94a3b8;
-  font-size: 0.72rem;
 }
     @media (min-width: 680px) {
       .profile-section {
@@ -166,20 +163,37 @@
       margin-bottom: 20px;
     }
 
-    .profile-photo-wrapper {
-      flex-shrink: 0;
-      text-align: center;
-    }
+    /* غلاف الصورة الشخصية مع تأثير عمق احترافي */
+.profile-photo-wrapper {
+  flex-shrink: 0;
+  text-align: center;
+  position: relative;
+}
 
-    .profile-photo {
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #ffffff;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-      background-color: #e2e8f0;
-    }
+/* صورة الباحث بنمط بورتيريه أكاديمي عصري */
+.profile-photo {
+  width: 215px;                  /* حجم أكبر وواضح جداً */
+  height: 215px;
+  border-radius: 28px;           /* نمط Squircle العصري بدلاً من الدائرة التقليدية */
+  object-fit: cover;
+  object-position: center top;   /* لضمان تركيز الكاميرا على الوجه */
+  padding: 4px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  /* ظل احترافي ناعم متعدد الطبقات (Soft Studio Shadow) */
+  box-shadow: 
+    0 10px 25px -5px rgba(15, 23, 42, 0.08),
+    0 8px 10px -6px rgba(15, 23, 42, 0.04);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+/* حركة رفع خفيفة وراقية عند تمرير الماوس */
+.profile-photo:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 20px 30px -10px rgba(37, 99, 235, 0.12),
+    0 10px 15px -5px rgba(15, 23, 42, 0.06);
+}
 
     /* Links & Buttons */
     .links-bar {
@@ -375,23 +389,26 @@
       <div class="profile-text">
         <h1 class="profile-title">Ali Sakour</h1>
         <div class="profile-subtitle">AI & Deep Learning Researcher</div>
+        <div class="academic-kernel" id="kernel">
+  <!-- Modern NLP Representation -->
+  <div class="kernel-item">
+    <span class="kernel-label"><i class="fa-solid fa-brain"></i> Modern NLP:</span>
+    <span id="nlp-tokens" class="tokens-box"></span>
+  </div>
+
+  <span class="kernel-divider">/</span>
+
+  <!-- Sub-4-bit / Ternary PTQ -->
+  <div class="kernel-item">
+    <span class="kernel-label"><i class="fa-solid fa-microchip"></i> Ternary PTQ:</span>
+    <span id="quant-vector" class="vector-box">W ∈ ℝ : [0.82, -0.47, 0.04, -0.76]</span>
+  </div>
+</div>
         <div class="profile-institution">
           <i class="fa-solid fa-graduation-cap"></i> Dept. of Computer and Automatic Control Engineering<br>
           Faculty of Mechanical & Electrical Engineering · <strong>Latakia University (Tishreen)</strong>
         </div>
-        <!-- شريط التعبير عن الـ NLP والتكميم -->
-<div class="academic-kernel" id="kernel">
-  <div class="kernel-item">
-    <span class="kernel-label"><i class="fa-solid fa-code-fork"></i> Tokenization:</span>
-    <span id="nlp-tokens" class="tokens-box"></span>
-  </div>
-  <div class="kernel-divider">|</div>
-  <div class="kernel-item">
-    <span class="kernel-label"><i class="fa-solid fa-compress"></i> PTQ:</span>
-    <span id="quant-vector" class="vector-box">FP32: [0.84, -0.42, 0.03, -0.79]</span>
-    <span class="math-target">∈ {-1, 0, +1}</span>
-  </div>
-</div>
+    
 
         <p class="bio-text">
           I am an AI researcher focused on deep learning model efficiency, neural morphogenesis, and representation learning. My research centers around developing extreme ultra-low-bit model quantization (such as sub-4-bit and data-free ternary PTQ) preserving weight geometry, uncovering emergent computational structures via Neural Cellular Automata (c-NCAs), and improving distributional semantics with attentive pooling.
@@ -522,34 +539,32 @@
   </div>
 
 </body>
-  <script>
+<script>
   window.addEventListener('DOMContentLoaded', () => {
-    // 1. أنيميشن معالجة اللغة: تدفق التوكنات (NLP Subword Tokenization)
-    const tokens = ['[NLP]', '[Repr]', '[HAL]', '[Attn]'];
-    const tokensContainer = document.getElementById('nlp-tokens');
+    // 1. تدفق توكنات الـ Modern Transformer
+    const modernTokens = ['[Context]', '[Embed]', '[Attn]', '[Latent]'];
+    const container = document.getElementById('nlp-tokens');
     
-    tokens.forEach((token, index) => {
+    modernTokens.forEach((t, i) => {
       setTimeout(() => {
         const span = document.createElement('span');
         span.className = 'token-chip';
-        span.textContent = token;
-        tokensContainer.appendChild(span);
-      }, index * 220); // تدفق زمني سريع وهادئ
+        span.textContent = t;
+        container.appendChild(span);
+      }, i * 180);
     });
 
-    // 2. أنيميشن التكميم: انهيار الأوزان من FP32 إلى Ternary {-1, 0, +1}
+    // 2. تكميم الأوزان: انهيار الأوزان المستمرة إلى Ternary فائق السرعة
     const quantVector = document.getElementById('quant-vector');
-    
-    // المرحلة 1: أرقام تتقلب بسرعة تحاكي عملية الـ Rounding والتحسين الهندسي
-    setTimeout(() => {
-      quantVector.textContent = 'Optimizing: [0.91, -0.58, 0.01, -0.83]';
-    }, 600);
 
-    // المرحلة 2: الانهيار إلى Ternary النهائي
+    setTimeout(() => {
+      quantVector.textContent = 'Quantizing: round(W / scale)...';
+    }, 800);
+
     setTimeout(() => {
       quantVector.classList.add('quantized');
-      quantVector.innerHTML = '<strong>W̄: [+1, -1, 0, -1]</strong>';
-    }, 1400);
+      quantVector.innerHTML = '<strong>W̄ ∈ {-1, 0, +1} : [+1, -1, 0, -1]</strong>';
+    }, 1500);
   });
 </script>
 </html>
