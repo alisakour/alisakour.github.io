@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
+    
     :root {
       --bg-color: #fafbfc;
       --card-bg: #ffffff;
@@ -62,7 +63,76 @@
       padding-bottom: 32px;
       border-bottom: 1px solid var(--border-color);
     }
+/* شريط النواة الأكاديمي */
+.academic-kernel {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid var(--accent); /* خط جانبي أزرق يوحي بالأكاديميا */
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  margin-bottom: 18px;
+  color: #334155;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
 
+.kernel-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kernel-label {
+  color: #64748b;
+  font-weight: 500;
+  font-size: 0.75rem;
+}
+
+.kernel-divider {
+  color: #cbd5e1;
+}
+
+/* نمط التوكنات للغة */
+.token-chip {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: #0f172a;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(3px);
+  animation: tokenIn 0.3s forwards ease;
+}
+
+@keyframes tokenIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* نمط المتجه المكمم */
+.vector-box {
+  color: #0284c7;
+  font-weight: 500;
+  transition: all 0.4s ease;
+}
+
+.vector-box.quantized {
+  color: #059669; /* يتحول للأخضر المكمم */
+  font-weight: 600;
+}
+
+.math-target {
+  color: #94a3b8;
+  font-size: 0.72rem;
+}
     @media (min-width: 680px) {
       .profile-section {
         flex-direction: row;
@@ -309,6 +379,19 @@
           <i class="fa-solid fa-graduation-cap"></i> Dept. of Computer and Automatic Control Engineering<br>
           Faculty of Mechanical & Electrical Engineering · <strong>Latakia University (Tishreen)</strong>
         </div>
+        <!-- شريط التعبير عن الـ NLP والتكميم -->
+<div class="academic-kernel" id="kernel">
+  <div class="kernel-item">
+    <span class="kernel-label"><i class="fa-solid fa-code-fork"></i> Tokenization:</span>
+    <span id="nlp-tokens" class="tokens-box"></span>
+  </div>
+  <div class="kernel-divider">|</div>
+  <div class="kernel-item">
+    <span class="kernel-label"><i class="fa-solid fa-compress"></i> PTQ:</span>
+    <span id="quant-vector" class="vector-box">FP32: [0.84, -0.42, 0.03, -0.79]</span>
+    <span class="math-target">∈ {-1, 0, +1}</span>
+  </div>
+</div>
 
         <p class="bio-text">
           I am an AI researcher focused on deep learning model efficiency, neural morphogenesis, and representation learning. My research centers around developing extreme ultra-low-bit model quantization (such as sub-4-bit and data-free ternary PTQ) preserving weight geometry, uncovering emergent computational structures via Neural Cellular Automata (c-NCAs), and improving distributional semantics with attentive pooling.
@@ -437,64 +520,36 @@
     </footer>
 
   </div>
-<!-- كانفاس لشبكة الانتباه العصبية -->
-<canvas id="neural-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.45;"></canvas>
 
-<script>
-  const canvas = document.getElementById('neural-canvas');
-  const ctx = canvas.getContext('2d');
-  let width, height, particles;
-
-  function init() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-    particles = [];
-    const count = Math.floor((width * height) / 18000); // كثافة متوازنة
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        radius: Math.random() * 1.5 + 1
-      });
-    }
-  }
-
-  function render() {
-    ctx.clearRect(0, 0, width, height);
-    for (let i = 0; i < particles.length; i++) {
-      let p = particles[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      if (p.x < 0 || p.x > width) p.vx *= -1;
-      if (p.y < 0 || p.y > height) p.vy *= -1;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = '#2563eb';
-      ctx.fill();
-
-      // رسم روابط الانتباه بين العقد القريبة (Attention lines)
-      for (let j = i + 1; j < particles.length; j++) {
-        let p2 = particles[j];
-        let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-        if (dist < 90) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.strokeStyle = `rgba(37, 99, 235, ${0.18 * (1 - dist / 90)})`;
-          ctx.lineWidth = 0.7;
-          ctx.stroke();
-        }
-      }
-    }
-    requestAnimationFrame(render);
-  }
-
-  window.addEventListener('resize', init);
-  init();
-  render();
-</script>
 </body>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    // 1. أنيميشن معالجة اللغة: تدفق التوكنات (NLP Subword Tokenization)
+    const tokens = ['[NLP]', '[Repr]', '[HAL]', '[Attn]'];
+    const tokensContainer = document.getElementById('nlp-tokens');
+    
+    tokens.forEach((token, index) => {
+      setTimeout(() => {
+        const span = document.createElement('span');
+        span.className = 'token-chip';
+        span.textContent = token;
+        tokensContainer.appendChild(span);
+      }, index * 220); // تدفق زمني سريع وهادئ
+    });
+
+    // 2. أنيميشن التكميم: انهيار الأوزان من FP32 إلى Ternary {-1, 0, +1}
+    const quantVector = document.getElementById('quant-vector');
+    
+    // المرحلة 1: أرقام تتقلب بسرعة تحاكي عملية الـ Rounding والتحسين الهندسي
+    setTimeout(() => {
+      quantVector.textContent = 'Optimizing: [0.91, -0.58, 0.01, -0.83]';
+    }, 600);
+
+    // المرحلة 2: الانهيار إلى Ternary النهائي
+    setTimeout(() => {
+      quantVector.classList.add('quantized');
+      quantVector.innerHTML = '<strong>W̄: [+1, -1, 0, -1]</strong>';
+    }, 1400);
+  });
+</script>
 </html>
